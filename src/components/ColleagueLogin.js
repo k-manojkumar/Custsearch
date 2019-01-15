@@ -25,8 +25,6 @@ class ColleagueLogin extends Component {
   }
 
   render() {
-    console.log(this.props.login);
-    console.log(this.props.handleLogin);
     var userMsg = this.props.login && (
       <div className="col-sm-5 text-center top-buffer">
         <h2 className="text-success font-weight-bold">Login Success!!</h2>
@@ -66,7 +64,6 @@ class ColleagueLogin extends Component {
       </div>
     );
 
-    console.log(userMsg);
     return (
       <div className="text-success">
         <div className="row top-buffer">

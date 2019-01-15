@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "../App.css";
 import "../../node_modules/bootstrap/dist/css/bootstrap.css";
-import { Link } from "react-router-dom";
 
 import Logo from "../lbg_logo.png";
 

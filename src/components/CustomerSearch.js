@@ -1,31 +1,26 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { ColumnSpan2 } from "./CommonElements.js";
+import ProdSearch from "./ProdSearch.js";
+import NameSearch from "./NameSearch.js";
 
 class CustomerSearch extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {};
   }
 
   render() {
     return (
       <div>
-        <ul class="nav nav-pills nav-justified">
+        <ul className="nav nav-pills nav-justified">
           <li className="nav-item">
-            <Link
-              className="nav-link "
-              to={this.props.match.path + "/prodsearch"}
-            >
+            <Link className="nav-link " to={"/Search/prodsearch"}>
               <b className="text-success">Product Number Search</b>
             </Link>
           </li>
           <li className="nav-item">
-            <Link
-              className="nav-link"
-              to={this.props.match.path + "/namesearch"}
-            >
+            <Link className="nav-link" to={"/Search/namesearch"}>
               <b className="text-success">Surname and Postcode Search</b>
             </Link>
           </li>
@@ -33,63 +28,26 @@ class CustomerSearch extends Component {
         <div className="row">
           <Switch>
             <Route
-              path={this.props.match.path + "/prodsearch"}
-              component={ProdSearch}
+              path={"/Search/prodsearch"}
+              component={() => (
+                <ProdSearch
+                  findCustomerProdNumber={this.props.findCustomerProdNumber}
+                />
+              )}
             />
             <Route
-              path={this.props.match.path + "/namesearch"}
-              component={NameSearch}
+              path={"/Search/namesearch"}
+              component={() => (
+                <NameSearch
+                  findCustomerNamePostcode={this.props.findCustomerNamePostcode}
+                />
+              )}
             />
           </Switch>
         </div>
       </div>
     );
   }
-}
-
-function NameSearch() {
-  return (
-    <div className="container-fluid m-5 p-5 bg-success">
-      <div className="row top-buffer" />
-      <div className="row top-buffer">
-        <ColumnSpan2 />
-        <h4 className="col-sm-3">Firstname</h4>
-        <input type="text" className="col-sm-3" />
-      </div>
-      <div className="row top-buffer">
-        <div className="col-sm-2" />
-        <h4 className="col-sm-3">Surname</h4>
-        <input type="text" className="col-sm-3" />
-      </div>
-      <div className="row top-buffer">
-        <div className="col-sm-2" />
-        <h4 className="col-sm-3">Postcode</h4>
-        <input type="text" className="col-sm-3" />
-      </div>
-      <div className="row top-buffer">
-        <div className="col-sm-5" />
-        <button>Search</button>
-      </div>
-    </div>
-  );
-}
-
-function ProdSearch() {
-  return (
-    <div className="container-fluid m-20 p-20 bg-success">
-      <div className="row top-buffer" />
-
-      <div className="row top-buffer">
-        <div className="col-sm-2" />
-        <h4 className="col-sm-3">Product Number</h4>
-        <input type="text" className="col-sm-3" />
-      </div>
-      <div className="row top-buffer">
-        <div className="col-sm-5" />
-        <button>Search</button>
-      </div>
-    </div>
-  );
 }
 
 export default CustomerSearch;

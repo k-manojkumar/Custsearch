@@ -5,7 +5,6 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.min.js";
 
 import Header from "./components/Header";
-import LeftNav from "./components/LeftNav";
 import NavBar from "./components/NavBar";
 import Content from "./components/Content.js";
 
@@ -26,11 +25,15 @@ class App extends Component {
   }
 
   handleLogin(id, pwd) {
-    if (id === "12345" && pwd === "qwerty") {
-      this.setState({ login: true });
-
-      console.log("state login set as true");
-    }
+    // http://localhost:3001/logon?user=test&password=1234
+    let queryString = "user=" + id + "&password=" + pwd;
+    fetch("http://localhost:3001/logon?" + queryString, {
+      crossDomain: true,
+      method: "GET",
+      headers: { "Content-Type": "application/json", accept: "json" }
+    })
+      .then(response => response.json())
+      .then(data => this.setState({ login: data }));
   }
 
   render() {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Collapse, Button, CardBody, Card } from "reactstrap";
+import { Collapse, CardBody, Card } from "reactstrap";
 import { ColumnSpan2 } from "./CommonElements";
 
 class CustomerDetails extends Component {

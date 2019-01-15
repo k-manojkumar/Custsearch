@@ -5,7 +5,6 @@ class NavBar extends Component {
   constructor(props) {
     super(props);
   }
-
   render() {
     return (
       <nav className="navbar navbar-expand-sm navbar-inverse no-margin">

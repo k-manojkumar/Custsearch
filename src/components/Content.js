@@ -26,9 +26,30 @@ class Content extends Component {
     this.findCustomerProdNumber = this.findCustomerProdNumber.bind(this);
   }
 
-  findCustomerProdNumber(pNumber) {}
+  findCustomerProdNumber(pNumber) {
+    console.log(pNumber);
 
-  findCustomerNamePostcode(name, postCode) {}
+    fetch("http://localhost:3001/Productsearch?ProductNum=" + pNumber, {
+      crossDomain: true,
+      method: "GET",
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(response => response.json())
+      .then(data => console.log(data));
+  }
+
+  findCustomerNamePostcode(name, postCode) {
+    console.log(name);
+    console.log(postCode);
+    let queryString = "Surname=" + name + "&PostCode=" + postCode;
+    fetch("http://localhost:3001/customersearch?" + queryString, {
+      crossDomain: true,
+      method: "GET",
+      headers: { "Content-Type": "application/json", accept: "json" }
+    })
+      .then(response => response.json())
+      .then(data => console.log(data));
+  }
 
   render() {
     return (
@@ -44,7 +65,16 @@ class Content extends Component {
               />
             )}
           />
-          <Route path="/Search" component={CustomerSearch} />
+          <Route
+            path="/Search"
+            component={() => (
+              <CustomerSearch
+                findCustomerNamePostcode={this.findCustomerNamePostcode}
+                findCustomerProdNumber={this.findCustomerProdNumber}
+                match={this.props.match}
+              />
+            )}
+          />
           <Route path="/Details" component={CustomerDetails} />
         </div>
       </Switch>
