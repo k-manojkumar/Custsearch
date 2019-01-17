@@ -1,9 +1,5 @@
 import React, { Component } from "react";
 
-import "jquery/src/jquery";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import "../node_modules/bootstrap/dist/js/bootstrap.min.js";
-
 import Header from "./components/Header";
 import NavBar from "./components/NavBar";
 import Content from "./components/Content.js";
