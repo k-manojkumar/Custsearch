@@ -1,10 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-//import $ from "jquery";
+import "jquery/src/jquery";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap";
-import "jquery/dist/jquery";
 
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
