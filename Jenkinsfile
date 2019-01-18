@@ -13,7 +13,10 @@ pipeline {
         }
         stage('test')
         {
-          echo 'test '
+          steps
+          {
+            echo 'test succuss '
+          }
         }
         stage('Deliver') {
             steps {
