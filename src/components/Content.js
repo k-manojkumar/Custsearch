@@ -13,11 +13,12 @@ class Content extends Component {
     };
     this.findCustomerNamePostcode = this.findCustomerNamePostcode.bind(this);
     this.findCustomerProdNumber = this.findCustomerProdNumber.bind(this);
+    this.clearDown = this.clearDown.bind(this);
   }
 
   findCustomerProdNumber(pNumber) {
     console.log(pNumber);
-
+    this.clearDown();
     fetch("http://localhost:3001/Productsearch?ProductNum=" + pNumber, {
       crossDomain: true,
       method: "GET",
@@ -35,6 +36,7 @@ class Content extends Component {
   findCustomerNamePostcode(name, postCode) {
     console.log(name);
     console.log(postCode);
+    this.clearDown();
     let queryString = "Surname=" + name + "&PostCode=" + postCode;
     fetch("http://localhost:3001/customersearch?" + queryString, {
       crossDomain: true,
@@ -48,6 +50,14 @@ class Content extends Component {
           this.setState({ searchFlag: true, customer: data[0] });
         }
       });
+  }
+
+  clearDown() {
+    console.log("clear down triggered");
+    this.setState({
+      searchFlag: false,
+      customer: null
+    });
   }
 
   render() {
@@ -71,6 +81,7 @@ class Content extends Component {
               <CustomerSearch
                 findCustomerNamePostcode={this.findCustomerNamePostcode}
                 findCustomerProdNumber={this.findCustomerProdNumber}
+                clearDown={this.clearDown}
                 match={this.props.match}
               />
             )}
