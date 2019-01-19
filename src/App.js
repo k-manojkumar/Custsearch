@@ -12,11 +12,18 @@ class App extends Component {
     };
     this.updateLogin = this.updateLogin.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   updateLogin() {
     this.setState({
       login: true
+    });
+  }
+
+  logout() {
+    this.setState({
+      login: false
     });
   }
 
@@ -36,7 +43,7 @@ class App extends Component {
     return (
       <div className="container-fluid">
         <Header />
-        <NavBar login={this.state.login} />
+        <NavBar login={this.state.login} logout={this.logout} />
         <div className="row content">
           <div className="col-sm-2" />
           <div className="col-sm-8">
