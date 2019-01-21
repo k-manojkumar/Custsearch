@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 
 class NavBar extends Component {
   render() {
+    var disableClick = {
+      pointerEvents: "none"
+    };
+
     var logout = this.props.login && (
       <ul className="nav navbar-nav navbar-right">
         <li>
@@ -22,10 +26,22 @@ class NavBar extends Component {
             <li className="nav-item">
               <Link to="/">Home</Link>
             </li>
-            <li className={this.props.login ? "nav-item" : "nav-item disabled"}>
+            <li
+              className={
+                this.props.login
+                  ? "nav-item"
+                  : "nav-item disabled disable-pointer"
+              }
+            >
               <Link to="/Search/prodsearch">Search</Link>
             </li>
-            <li className={this.props.login ? "nav-item" : "nav-item disabled"}>
+            <li
+              className={
+                this.props.login
+                  ? "nav-item"
+                  : "nav-item disabled disable-pointer"
+              }
+            >
               <Link to="/Details">Details</Link>
             </li>
           </ul>

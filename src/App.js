@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import swal from "sweetalert";
 
 import Header from "./components/Header";
 import NavBar from "./components/NavBar";
@@ -36,7 +37,15 @@ class App extends Component {
       headers: { "Content-Type": "application/json", accept: "json" }
     })
       .then(response => response.json())
-      .then(data => this.setState({ login: data }));
+      .then(data => {
+        if (data) {
+          swal("Login Success", "", "success");
+          this.setState({ login: data });
+        } else {
+          swal("Login Failure", "Invalid Username/Password", "error");
+          //alert("Invalid Username/Password");
+        }
+      });
   }
 
   render() {
