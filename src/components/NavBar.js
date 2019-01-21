@@ -3,6 +3,15 @@ import { Link } from "react-router-dom";
 
 class NavBar extends Component {
   render() {
+    var logout = this.props.login && (
+      <ul className="nav navbar-nav navbar-right">
+        <li>
+          <Link to="/" onClick={this.props.logout}>
+            <span className="glyphicon glyphicon-user" /> Logout
+          </Link>
+        </li>
+      </ul>
+    );
     return (
       <nav className="navbar navbar-expand-sm navbar-inverse no-margin">
         <div className="navbar-header">
@@ -11,9 +20,7 @@ class NavBar extends Component {
         <div className="collapse navbar-collapse">
           <ul className="nav navbar-nav">
             <li className="nav-item">
-              <Link disabled={this.props.login} to="/">
-                Home
-              </Link>
+              <Link to="/">Home</Link>
             </li>
             <li className={this.props.login ? "nav-item" : "nav-item disabled"}>
               <Link to="/Search/prodsearch">Search</Link>
@@ -22,6 +29,7 @@ class NavBar extends Component {
               <Link to="/Details">Details</Link>
             </li>
           </ul>
+          {logout}
         </div>
       </nav>
     );
