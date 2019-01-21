@@ -1,14 +1,16 @@
 pipeline {
     agent any
-
-    environment {
-     HOME = '.'
-     CI = 'true'
- }
     stages {
+        stage('checkout') {
+            steps {
+                checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/wolvie26/Custsearch.git']]]
+            }
+        }
         stage('Build') {
             steps {
+                nodejs('node11.7')  {
                 sh 'npm install'
+                }
             }
         }
         stage('test')
@@ -20,12 +22,11 @@ pipeline {
         }
         stage('Deliver') {
             steps {
+                nodejs('node11.7')  {
                 sh 'npm run build'
                 sh 'npm start'
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                sh 'sleep 1'
-                sh 'echo $! > .pidfile'
-                sh 'kill $(cat .pidfile)'
+                }
+
             }
         }
     }
