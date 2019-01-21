@@ -1,10 +1,16 @@
 pipeline {
-    agent any
+agent {
+      docker {
+          image 'node:6-alpine'
+          args '-p 3000:3000'
+      }
+  }
 
     environment {
      HOME = '.'
      CI = 'true'
- }
+ }manish1712
+
     stages {
         stage('Build') {
             steps {
@@ -22,7 +28,6 @@ pipeline {
             steps {
                 sh 'npm run build'
                 sh 'npm start'
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
                 sh 'sleep 1'
                 sh 'echo $! > .pidfile'
                 sh 'kill $(cat .pidfile)'
