@@ -1,10 +1,5 @@
 pipeline {
-agent {
-      docker {
-          image 'node:6-alpine'
-          args '-p 3000:3000'
-      }
-  }
+    agent any
 
     environment {
      HOME = '.'
@@ -28,6 +23,7 @@ agent {
             steps {
                 sh 'npm run build'
                 sh 'npm start'
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
                 sh 'sleep 1'
                 sh 'echo $! > .pidfile'
                 sh 'kill $(cat .pidfile)'
