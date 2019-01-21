@@ -9,7 +9,7 @@ agent {
     environment {
      HOME = '.'
      CI = 'true'
- }manish1712
+ }
 
     stages {
         stage('Build') {
